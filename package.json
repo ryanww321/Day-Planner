@@ -1,0 +1,24 @@
+{
+  "name": "Day-Planner",
+  "version": "1.0.0",
+  "description": "Due: Friday, January 31, 2020 11:59 PM Local",
+  "main": "index.js",
+  "dependencies": {
+    "moment": "^2.24.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryanww321/Day-Planner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ryanww321/Day-Planner/issues"
+  },
+  "homepage": "https://github.com/ryanww321/Day-Planner#readme"
+}
