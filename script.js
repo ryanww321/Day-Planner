@@ -1,30 +1,74 @@
-$(document).ready(function() {
+var $9AM = $("#9AM");
+var $10AM = $("#10AM");
+var $11AM = $("#11AM");
+var $12PM = $("#12PM");
+var $1PM = $("#1PM");
+var $2PM = $("#2PM");
+var $3PM = $("#3PM");
+var $4PM = $("#4PM");
+var $5PM = $("#5PM");
+
+// array for the current state function to change the background colors
+var timeBlocksArray = [
+    $9AM, $10AM, $11AM, $12PM, $1PM,
+    $2PM, $3PM, $4PM, $5PM
+]
+
+var todoList = [
+    "", "", "", "", "",
+    "", "", "", "",
+];
 
 
+// sets current time in the header and changes background colors of text areas
+$(document).ready(function () {
 
-// GIVEN I am using a daily planner to create a schedule
-// WHEN I open the planner
-// THEN the current day is displayed at the top of the calendar
-// WHEN I scroll down
-// THEN I am presented with timeblocks for standard business hours
-// WHEN I view the timeblocks for that day
-// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-// WHEN I click into a timeblock
-// THEN I can enter an event
-// WHEN I click the save button for that timeblock
-// THEN the text for that event is saved in local storage
-// WHEN I refresh the page
-// THEN the saved events persist
+    setInterval(function () {
 
+        $("#currentDay").text(moment().format("MMMM Do YYYY, h:mm:ss a"));
+    }, 1000);
+
+    function setCurrentState() {
+        var currentTime = moment().format('HH');
+        var count = parseInt(currentTime);
+
+        for (var i = 0; i < timeBlocksArray.length; i++) {
+            if ((count - 9) > i)
+                timeBlocksArray[i].addClass("past");
+            else if ((count - 9) === i)
+                timeBlocksArray[i].addClass("present");
+            else if ((count - 9) < i)
+                timeBlocksArray[i].addClass("future");
+        }
+
+    }
+
+    function storingTodos() {
+
+        for (var i = 0; i < timeBlocksArray.length; i++) {
+            todoList[i] = timeBlocksArray[i].text();
+
+        }
+
+    }
+
+    storingTodos();
+
+    setCurrentState();
+
+
+    // still having an issue figuring out local storage
+    $(".saveBtn").click(function(){
+            console.log("this was cicked");
+        localStorage.getItem ("textinput", "");
+        document.getElementsByTagName("").innerHTML = localStorage.getItem("");
+
+    })
 
 
 
 
 });
 
-// adds current time to the header
-var $currentTime = moment().format('LL');
- $(`<span>${$currentTime}</span>`).appendTo("#currentDay");
 
-var $currentHour = moment().format('LT'); 
-$(`<span>${$currentHour}</span>`).appendTo(".hour");
+
